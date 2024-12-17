@@ -11,10 +11,8 @@ import {RouteProp} from '@react-navigation/native';
 import AntDesignIcon from '@react-native-vector-icons/ant-design';
 import {Snackbar} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
-import BankTransfer from '../../atoms/BankTransfer';
-import LabelValue from '../../atoms/LabelValue';
+import {TransactionDetailSection} from '../../organisms';
 import {RootStackParamList} from '../../../types';
-import {formatDate} from '../../../helpers';
 import {Colors} from '../../../styles';
 
 type TransactionDetailScreenNavigationProp = StackNavigationProp<
@@ -31,7 +29,7 @@ interface TransactionDetailProps {
   route: TransactionDetailRouteProp;
 }
 
-const TransactionDetail: React.FC<TransactionDetailProps> = ({
+export const TransactionDetail: React.FC<TransactionDetailProps> = ({
   navigation,
   route,
 }) => {
@@ -75,45 +73,11 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             <Text style={styles.closeText}>Tutup</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.transactionContainer}>
-          <View style={styles.bankTransferContainer}>
-            <BankTransfer
-              senderBank={transaction?.sender_bank}
-              beneficiaryBank={transaction?.beneficiary_bank}
-            />
-          </View>
-          <View style={styles.rowLabelValue}>
-            <View style={styles.flex3}>
-              <LabelValue
-                label={transaction?.beneficiary_name}
-                value={transaction?.account_number}
-              />
-            </View>
-            <View style={styles.flex2}>
-              <LabelValue label="Nominal" value={transaction?.amount} />
-            </View>
-          </View>
-          <View style={styles.rowLabelValue}>
-            <View style={styles.flex3}>
-              <LabelValue label="Berita Transfer" value={transaction?.remark} />
-            </View>
-            <View style={styles.flex2}>
-              <LabelValue label="Kode Unik" value={transaction?.unique_code} />
-            </View>
-          </View>
-          <View style={styles.rowLabelValue}>
-            <LabelValue
-              label="Waktu Dibuat"
-              value={formatDate(transaction?.created_at)}
-            />
-          </View>
-        </View>
+        <TransactionDetailSection transaction={transaction} />
       </View>
     </SafeAreaView>
   );
 };
-
-export default TransactionDetail;
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: Colors.softOrange},
@@ -137,9 +101,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   closeText: {color: Colors.orange, fontWeight: 700},
-  transactionContainer: {padding: 18, backgroundColor: 'white'},
-  bankTransferContainer: {marginBottom: 16},
-  rowLabelValue: {flexDirection: 'row', marginBottom: 16},
-  flex2: {flex: 2},
-  flex3: {flex: 3},
 });

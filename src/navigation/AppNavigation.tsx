@@ -2,8 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {RootStackParamList} from '../types';
-import TransactionDetail from '../components/pages/TransactionDetail';
-import Transaction from '../components/pages/Transaction';
+import {Transaction, TransactionDetail} from '../components/pages';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

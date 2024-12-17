@@ -1,10 +1,8 @@
 import React, {useMemo, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import useFetch from '../../../hooks/useFetch';
-import SearchBar from '../../organisms/SearchBar';
-import TransactionList from '../../organisms/TransactionList';
-import SortModal from '../../organisms/SortModal';
+import {useFetch} from '../../../hooks';
+import {SearchBar, TransactionList, SortModal} from '../../organisms';
 import {
   RootStackParamList,
   Transaction as TransactionType,
@@ -21,7 +19,7 @@ interface TransactionProps {
   navigation: TransactionScreenNavigationProp;
 }
 
-const Transaction: React.FC<TransactionProps> = ({navigation}) => {
+export const Transaction: React.FC<TransactionProps> = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('default');
@@ -65,8 +63,6 @@ const Transaction: React.FC<TransactionProps> = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
-export default Transaction;
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: Colors.softOrange},

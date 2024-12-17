@@ -1,8 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FontAwesomeIcon from '@react-native-vector-icons/fontawesome';
-import StatusBadge from '../../atoms/StatusBadge';
-import BankTransfer from '../../atoms/BankTransfer';
+import {BankTransfer, StatusBadge} from '../../atoms';
 import {Transaction} from '../../../types';
 import {formatDate, formatRupiah} from '../../../helpers';
 import {Colors} from '../../../styles';
@@ -12,7 +11,10 @@ interface TransactionItemProps {
   onPress: () => void;
 }
 
-const TransactionItem: React.FC<TransactionItemProps> = ({item, onPress}) => {
+export const TransactionItem: React.FC<TransactionItemProps> = ({
+  item,
+  onPress,
+}) => {
   const colorStatus = item?.status === 'SUCCESS' ? Colors.green : Colors.orange;
   return (
     <TouchableOpacity
@@ -45,8 +47,6 @@ const TransactionItem: React.FC<TransactionItemProps> = ({item, onPress}) => {
     </TouchableOpacity>
   );
 };
-
-export default TransactionItem;
 
 const styles = StyleSheet.create({
   container: {

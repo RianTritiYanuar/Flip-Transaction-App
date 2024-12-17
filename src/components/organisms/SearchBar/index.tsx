@@ -17,7 +17,7 @@ interface SearchBarProps {
   onChangeText: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
+export const SearchBar: React.FC<SearchBarProps> = ({
   sort,
   value,
   onPressSort,
@@ -42,8 +42,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
     </View>
   );
 };
-
-export default SearchBar;
 
 const styles = StyleSheet.create({
   container: {

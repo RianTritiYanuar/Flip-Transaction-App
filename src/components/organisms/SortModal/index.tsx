@@ -9,7 +9,11 @@ interface SortModalProps {
   onPress: (e: string) => void;
 }
 
-const SortModal: React.FC<SortModalProps> = ({visible, sort, onPress}) => {
+export const SortModal: React.FC<SortModalProps> = ({
+  visible,
+  sort,
+  onPress,
+}) => {
   return (
     <Modal
       visible={visible}
@@ -63,5 +67,3 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
 });
-
-export default SortModal;

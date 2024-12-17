@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import TransactionItem from '../../molecules/TransactionItem';
+import {TransactionItem} from '../../molecules';
 import {Transaction} from '../../../types';
 import {Colors} from '../../../styles';
 
@@ -16,7 +16,7 @@ interface TransactionListProps {
   onPress: (transaction: Transaction) => void;
 }
 
-const TransactionList: React.FC<TransactionListProps> = ({
+export const TransactionList: React.FC<TransactionListProps> = ({
   data,
   loading,
   onPress,
@@ -51,8 +51,6 @@ const TransactionList: React.FC<TransactionListProps> = ({
     />
   );
 };
-
-export default TransactionList;
 
 const styles = StyleSheet.create({
   container: {marginHorizontal: 10},

@@ -6,7 +6,7 @@ interface LabelValueProps {
   value: string | number;
 }
 
-const LabelValue: React.FC<LabelValueProps> = ({label, value}) => {
+export const LabelValue: React.FC<LabelValueProps> = ({label, value}) => {
   return (
     <View>
       <Text style={styles.label}>{label?.toString()?.toUpperCase()}</Text>
@@ -14,8 +14,6 @@ const LabelValue: React.FC<LabelValueProps> = ({label, value}) => {
     </View>
   );
 };
-
-export default LabelValue;
 
 const styles = StyleSheet.create({
   label: {marginBottom: 4, fontWeight: 600},

@@ -7,7 +7,7 @@ interface StatusBadgeProps {
   status: TransactionStatus;
 }
 
-const StatusBadge: React.FC<StatusBadgeProps> = ({status}) => {
+export const StatusBadge: React.FC<StatusBadgeProps> = ({status}) => {
   const color = status === 'SUCCESS' ? 'white' : 'black';
   const backgroundColor = status === 'SUCCESS' ? Colors.green : 'white';
   const colorBorder = status === 'SUCCESS' ? Colors.green : Colors.orange;
@@ -22,8 +22,6 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({status}) => {
     </View>
   );
 };
-
-export default StatusBadge;
 
 const styles = StyleSheet.create({
   container: {

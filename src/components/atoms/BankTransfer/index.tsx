@@ -7,7 +7,7 @@ interface BankTransferProps {
   beneficiaryBank: string;
 }
 
-const BankTransfer: React.FC<BankTransferProps> = ({
+export const BankTransfer: React.FC<BankTransferProps> = ({
   senderBank,
   beneficiaryBank,
 }) => {
@@ -24,8 +24,6 @@ const BankTransfer: React.FC<BankTransferProps> = ({
     </View>
   );
 };
-
-export default BankTransfer;
 
 const styles = StyleSheet.create({
   container: {
