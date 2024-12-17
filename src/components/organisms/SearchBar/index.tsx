@@ -8,19 +8,35 @@ import {
 } from 'react-native';
 import FontAwesomeIcon from '@react-native-vector-icons/fontawesome';
 import {Colors} from '../../../styles';
+import {findSortByValue} from '../../../helpers';
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  sort: string;
+  value: string;
+  onPressSort: () => void;
+  onChangeText: (value: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({
+  sort,
+  value,
+  onPressSort,
+  onChangeText,
+}) => {
+  const currentSort = findSortByValue(sort);
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
         <FontAwesomeIcon name="search" size={20} color={Colors.gray} />
         <TextInput
+          value={value}
           placeholder="Cari nama, bank, atau nominal"
+          onChangeText={onChangeText}
           style={styles.textInput}
         />
       </View>
-      <TouchableOpacity style={styles.sortContainer}>
-        <Text style={styles.sortText}>Urutkan</Text>
+      <TouchableOpacity onPress={onPressSort} style={styles.sortContainer}>
+        <Text style={styles.sortText}>{currentSort?.label}</Text>
         <FontAwesomeIcon name="chevron-down" size={18} color={Colors.orange} />
       </TouchableOpacity>
     </View>
@@ -57,5 +73,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
-  sortText: {marginRight: 4, color: Colors.orange, fontWeight: 600},
+  sortText: {
+    marginRight: 4,
+    color: Colors.orange,
+    fontSize: 12,
+    fontWeight: 600,
+  },
 });

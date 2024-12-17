@@ -1,14 +1,26 @@
 import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import TransactionItem from '../../molecules/TransactionItem';
 import {Transaction} from '../../../types';
+import {Colors} from '../../../styles';
 
 interface TransactionListProps {
+  loading: boolean;
   data: Transaction[] | [];
   onPress: (transaction: Transaction) => void;
 }
 
-const TransactionList: React.FC<TransactionListProps> = ({data, onPress}) => {
+const TransactionList: React.FC<TransactionListProps> = ({
+  data,
+  loading,
+  onPress,
+}) => {
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
@@ -23,6 +35,18 @@ const TransactionList: React.FC<TransactionListProps> = ({data, onPress}) => {
           />
         );
       }}
+      ListEmptyComponent={
+        loading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color={Colors.orange} />
+            <Text style={styles.loadingText}>Loading...</Text>
+          </View>
+        ) : (
+          <View style={styles.emptyContainer}>
+            <Text>No transactions found.</Text>
+          </View>
+        )
+      }
       style={styles.container}
     />
   );
@@ -30,4 +54,23 @@ const TransactionList: React.FC<TransactionListProps> = ({data, onPress}) => {
 
 export default TransactionList;
 
-const styles = StyleSheet.create({container: {marginHorizontal: 10}});
+const styles = StyleSheet.create({
+  container: {marginHorizontal: 10},
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: Colors.orange,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+});

@@ -1,21 +1,41 @@
 import React from 'react';
-import {View, Text, Modal, StyleSheet} from 'react-native';
+import {View, Text, Modal, StyleSheet, TouchableOpacity} from 'react-native';
 import {RadioButton} from 'react-native-paper';
+import {Colors} from '../../../styles';
+import {transactionSort} from '../../../helpers';
+interface SortModalProps {
+  visible: boolean;
+  sort: string;
+  onPress: (e: string) => void;
+}
 
-const SortModal = () => {
+const SortModal: React.FC<SortModalProps> = ({visible, sort, onPress}) => {
   return (
     <Modal
-      visible={false}
+      visible={visible}
       transparent
       animationType="slide"
       onRequestClose={() => {}}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <RadioButton.Group onValueChange={() => {}} value={'first'}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <RadioButton.Android value="first" />
-              <Text>First</Text>
-            </View>
+          <RadioButton.Group
+            onValueChange={(e: string) => onPress(e)}
+            value={sort}>
+            {transactionSort.map(item => {
+              return (
+                <TouchableOpacity
+                  key={item?.value}
+                  onPress={() => onPress(item?.value)}
+                  style={styles.radioContainer}>
+                  <RadioButton.Android
+                    value={item?.value}
+                    color={Colors.orange}
+                    uncheckedColor={Colors.orange}
+                  />
+                  <Text>{item?.label}</Text>
+                </TouchableOpacity>
+              );
+            })}
           </RadioButton.Group>
         </View>
       </View>
@@ -37,7 +57,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
   },
-  modalText: {fontSize: 18, marginBottom: 10},
+  radioContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
 });
 
 export default SortModal;
