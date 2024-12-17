@@ -1,13 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {RootStackParamList} from '../types';
 import TransactionDetail from '../components/pages/TransactionDetail';
 import Transaction from '../components/pages/Transaction';
-
-type RootStackParamList = {
-  Transaction: undefined;
-  TransactionDetail: undefined;
-};
 
 const Stack = createStackNavigator<RootStackParamList>();
 
