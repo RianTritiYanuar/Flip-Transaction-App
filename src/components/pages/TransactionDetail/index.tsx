@@ -9,9 +9,9 @@ import {
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 import AntDesignIcon from '@react-native-vector-icons/ant-design';
-import {Snackbar} from 'react-native-paper';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {TransactionDetailSection} from '../../organisms';
+import {Alert} from '../../atoms';
 import {RootStackParamList} from '../../../types';
 import {Colors} from '../../../styles';
 
@@ -43,17 +43,11 @@ export const TransactionDetail: React.FC<TransactionDetailProps> = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      <Snackbar
+      <Alert
         visible={visible}
+        message="Berhasil menyalin"
         onDismiss={() => setVisible(false)}
-        duration={2000}
-        action={{
-          label: 'OK',
-          labelStyle: styles.snackBarText,
-        }}
-        style={styles.snackBar}>
-        <Text style={styles.snackBarText}>Berhasil menyalin</Text>
-      </Snackbar>
+      />
       <View>
         <View style={styles.IDContainer}>
           <Text style={styles.fontWeight600}>ID TRANSAKSI: #</Text>
