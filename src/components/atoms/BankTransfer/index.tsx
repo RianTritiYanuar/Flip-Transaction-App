@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import FontAwesomeIcon from '@react-native-vector-icons/fontawesome';
 
 interface BankTransferProps {
@@ -12,12 +12,28 @@ const BankTransfer: React.FC<BankTransferProps> = ({
   beneficiaryBank,
 }) => {
   return (
-    <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-      <Text>{senderBank?.toUpperCase()}</Text>
-      <FontAwesomeIcon name="arrow-right" size={20} color="#4F8EF7" />
-      <Text>{beneficiaryBank?.toUpperCase()}</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{senderBank?.toUpperCase()}</Text>
+      <FontAwesomeIcon
+        name="arrow-right"
+        size={14}
+        color="black"
+        style={styles.icon}
+      />
+      <Text style={styles.text}>{beneficiaryBank?.toUpperCase()}</Text>
     </View>
   );
 };
 
 export default BankTransfer;
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginBottom: 4,
+  },
+  icon: {marginHorizontal: 6},
+  text: {fontWeight: '700', fontSize: 16},
+});

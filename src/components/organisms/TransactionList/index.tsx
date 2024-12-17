@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import TransactionItem from '../../molecules/TransactionItem';
 import {Transaction} from '../../../types';
 
@@ -23,9 +23,11 @@ const TransactionList: React.FC<TransactionListProps> = ({data, onPress}) => {
           />
         );
       }}
-      style={{marginHorizontal: 6}}
+      style={styles.container}
     />
   );
 };
 
 export default TransactionList;
+
+const styles = StyleSheet.create({container: {marginHorizontal: 10}});
