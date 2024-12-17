@@ -5,7 +5,7 @@ import {Transaction} from '../../../types';
 
 interface TransactionListProps {
   data: Transaction[] | [];
-  onPress: () => void;
+  onPress: (transaction: Transaction) => void;
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({data, onPress}) => {
@@ -15,7 +15,13 @@ const TransactionList: React.FC<TransactionListProps> = ({data, onPress}) => {
       data={data}
       keyExtractor={item => item.id}
       renderItem={({item}) => {
-        return <TransactionItem key={item?.id} item={item} onPress={onPress} />;
+        return (
+          <TransactionItem
+            key={item?.id}
+            item={item}
+            onPress={() => onPress(item)}
+          />
+        );
       }}
       style={{marginHorizontal: 6}}
     />

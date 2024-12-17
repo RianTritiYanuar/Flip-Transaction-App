@@ -2,13 +2,14 @@ import React, {useMemo} from 'react';
 import {SafeAreaView} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import useFetch from '../../../hooks/useFetch';
-import Header from '../../organisms/Header';
+import SearchBar from '../../organisms/SearchBar';
 import TransactionList from '../../organisms/TransactionList';
 import SortModal from '../../organisms/SortModal';
 import {
   RootStackParamList,
   Transaction as TransactionType,
 } from '../../../types';
+import {Colors} from '../../../styles';
 
 type TransactionScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -28,13 +29,13 @@ const Transaction: React.FC<TransactionProps> = ({navigation}) => {
     [data],
   );
 
-  const onPressTransaction = () => {
-    navigation.navigate('TransactionDetail');
+  const onPressTransaction = (transaction: TransactionType) => {
+    navigation.navigate('TransactionDetail', {transaction: transaction});
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'orange'}}>
-      <Header />
+    <SafeAreaView style={{flex: 1, backgroundColor: Colors.softOrange}}>
+      <SearchBar />
       <TransactionList data={transactions} onPress={onPressTransaction} />
       <SortModal />
     </SafeAreaView>

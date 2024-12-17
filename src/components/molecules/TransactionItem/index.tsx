@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import AntDesignIcon from '@react-native-vector-icons/ant-design';
 import FontAwesomeIcon from '@react-native-vector-icons/fontawesome';
 import StatusBadge from '../../atoms/StatusBadge';
+import BankTransfer from '../../atoms/BankTransfer';
 import {Transaction} from '../../../types';
 import {formatDate, formatRupiah} from '../../../helpers';
 import {Colors} from '../../../styles';
@@ -13,7 +13,7 @@ interface TransactionItemProps {
 }
 
 const TransactionItem: React.FC<TransactionItemProps> = ({item, onPress}) => {
-  const colorStatus = item?.status === 'SUCCESS' ? Colors.green : Colors.red;
+  const colorStatus = item?.status === 'SUCCESS' ? Colors.green : Colors.orange;
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -33,18 +33,15 @@ const TransactionItem: React.FC<TransactionItemProps> = ({item, onPress}) => {
           }}
         />
         <View style={{paddingLeft: 12, paddingVertical: 12, flex: 1}}>
-          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <Text>{item?.sender_bank?.toUpperCase()}</Text>
-            <AntDesignIcon name="arrow-right" size={20} color="#4F8EF7" />
-            <Text>{item?.beneficiary_bank?.toUpperCase()}</Text>
-          </View>
+          <BankTransfer
+            senderBank={item?.sender_bank}
+            beneficiaryBank={item?.beneficiary_bank}
+          />
           <Text>{item?.beneficiary_name?.toUpperCase()}</Text>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
             <Text style={{flexShrink: 1}}>{formatRupiah(item?.amount)}</Text>
             <FontAwesomeIcon name="circle" size={8} color="#4F8EF7" />
-            <Text style={{flexShrink: 1}}>
-              {formatDate(item?.completed_at)}
-            </Text>
+            <Text style={{flexShrink: 1}}>{formatDate(item?.created_at)}</Text>
           </View>
         </View>
       </View>

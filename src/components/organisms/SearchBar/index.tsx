@@ -1,12 +1,18 @@
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import AntDesignIcon from '@react-native-vector-icons/ant-design';
 
-const Header: React.FC = () => {
+const SearchBar: React.FC = () => {
   return (
     <View
       style={{
         flexDirection: 'row',
-        backgroundColor: 'pink',
         margin: 6,
         paddingHorizontal: 8,
         alignItems: 'center',
@@ -15,11 +21,10 @@ const Header: React.FC = () => {
         style={{
           flex: 2,
           flexDirection: 'row',
-          backgroundColor: 'lightblue',
           alignItems: 'center',
           paddingRight: 8,
         }}>
-        <Text>Icon</Text>
+        <AntDesignIcon name="arrow-right" size={20} color="#4F8EF7" />
         <TextInput
           placeholder="Cari nama, bank, atau nominal"
           style={{
@@ -36,4 +41,6 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default SearchBar;
+
+const styles = StyleSheet.create({});
